@@ -4,7 +4,7 @@ import pygame
 pygame.init()
 
 screenWidth = 800
-screenHeight = 600
+screenHeight = 650
 screen = pygame.display.set_mode((screenWidth, screenHeight))
 pygame.display.set_caption('Blackjack')
 font = pygame.font.SysFont('Constantia', 20)
@@ -219,9 +219,13 @@ def getPlayerTotal():
 # load images
 hit_button_image = pygame.image.load('card-images/hit_btn.png')
 stay_button_image = pygame.image.load('card-images/stay_btn.png')
+reset_button_image = pygame.image.load('card-images/reset_btn.png')
+quit_button_image = pygame.image.load('card-images/quit_btn.png')
 
 hit_button = Button(300, 200, hit_button_image, 0.3)
 stay_button = Button(400, 200, stay_button_image, 0.3)
+reset_button = Button(300, 600, reset_button_image, 0.3)
+quit_button = Button(400, 600, quit_button_image, 0.3)
 
 createCardX(xPos)  # 1st card
 createCardX(xPos)  # 2nd Card
@@ -256,6 +260,19 @@ while run:
             else:
                 draw_text("You Won!", font, white, 22, 44)
             gameOver = True
+
+        # Code for reset functionality
+        if reset_button.draw():
+            hitCardsList = []
+            xPos = 30
+            playerTotal = 0
+            createCardX(xPos)
+            createCardX(xPos)
+            gameOver = False
+
+        # Functionality for quitting game
+        if quit_button.draw():
+            pygame.quit()
 
     # Event Handler
     for event in pygame.event.get():
