@@ -1,5 +1,6 @@
 import random
 import pygame
+import time
 
 pygame.init()
 
@@ -249,7 +250,16 @@ while run:
             print("hi")
             playerTotal = getPlayerTotal()
             print(getPlayerTotal())
-            userPrompt = "Would you like to hit again?"
+            if playerTotal == winningScore:
+                userPrompt = "You Win :)"
+                pygame.display.update()
+                gameOver = True
+            elif playerTotal > winningScore:
+                userPrompt = "You lost :("
+                pygame.display.update()
+                gameOver = True
+            else:
+                userPrompt = "Would you like to hit again?"
 
         if stay_button.draw():
             playerTotal = getPlayerTotal()
